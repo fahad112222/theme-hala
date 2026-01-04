@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "Novie",
-        "en": "نوفي"
+        "ar": "ababel-abajora-theme",
+        "en": "Novie"
     },
     "repository": "https://github.com/fahad112222/theme-hala",
-    "author_email": "contact.halaabousaad@gmail.com",
+    "author_email": "hamedajaj18@gmail.com",
     "features": [
         "mega-menu",
         "fonts",
@@ -1025,7 +1025,7 @@
             ]
         }
     ],
-    "support_url": "https://Novie.com/ar",
+    "support_url": "https://ababeel-world.com/ar",
     "description": {
         "ar": "",
         "en": ""
