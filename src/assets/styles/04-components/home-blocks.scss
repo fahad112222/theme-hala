@@ -1,0 +1,258 @@
+/* ===========================
+   Block Title
+=========================== */
+.s-block {
+  &__title {
+    @apply flex justify-between items-center mb-4 md:mb-8;
+
+    .right-side {
+      @apply rtl:pl-8 ltr:pr-8;
+    }
+
+    h2 {
+      @apply text-lg font-bold relative leading-[1.2];
+    }
+
+    p {
+      @apply text-sm opacity-60 mt-2 line-clamp-1 sm:line-clamp-2 rtl:md:pl-16 ltr:md:pr-16;
+    }
+
+    &-nav {
+      @apply hidden sm:flex ltr:flex-row-reverse rtl:space-x-reverse space-x-2.5 rtl:mr-6 ltr:ml-6;
+    }
+  }
+
+  &__display-all {
+    @apply inline-flex items-center gap-2 text-sm font-bold opacity-80 hover:opacity-100;
+
+    i {
+      @apply ltr:rotate-180 inline-block;
+    }
+  }
+}
+
+/* ===========================
+   Main Slider
+=========================== */
+.s-block--hero-slider {
+  .swiper-slide {
+    @apply h-80 sm:h-96 lg:h-[29rem] xl:h-[33rem] relative bg-gray-800;
+
+    .swiper-lazy {
+      &:after {
+        content: '';
+        @apply absolute top-0 w-full h-full bg-black/60 transition-opacity;
+      }
+    }
+
+    .overlay-bg {
+      &:after {
+        content: '';
+        @apply absolute top-0 w-full h-full bg-black/60;
+      }
+    }
+  }
+}
+
+/* ===========================
+   Banner Block
+=========================== */
+.banner {
+  @media screen and (min-width: 768px) {
+    &:hover {
+      .banner__title {
+        animation: toTopFromBottom 0.9s;
+      }
+
+      .banner__description {
+        animation: delayKeyframe 0.3s, toTopFromBottom 0.9s 0.3s;
+      }
+    }
+  }
+
+  &--fixed {
+    img {
+      @apply w-full object-cover rounded-md border-none block bg-gray-100;
+    }
+  }
+}
+
+/* ===========================
+   Square Banner Block
+=========================== */
+.banner-entry {
+  @apply h-[200px] bg-gray-100 text-white text-center p-3 xs:p-4 rounded-md overflow-hidden relative bg-cover bg-center;
+
+  article {
+    @apply flex flex-col items-center justify-center h-full p-2.5;
+  }
+
+  &.square-photos h3 {
+    @apply h-full px-3;
+  }
+
+  h3 {
+    @apply flex flex-col justify-center xs:px-1;
+
+    &.text-with-border {
+      @apply xs:border border-dashed border-gray-200 rounded-md;
+
+      span {
+        @apply line-clamp-2;
+      }
+    }
+  }
+
+  p {
+    @apply line-clamp-2 opacity-80;
+  }
+
+  h3, p {
+    @apply lg:opacity-0 transition-all duration-300 relative z-10 lg:translate-y-6;
+  }
+
+  &:hover {
+    h3 {
+      @apply opacity-100 translate-y-0;
+    }
+
+    p {
+      @apply opacity-80 translate-y-0;
+    }
+  }
+
+  .two-row & {
+    &:first-child {
+      @apply md:h-full sm:col-span-1 sm:row-span-2 p-5;
+
+      > a {
+        @apply opacity-100;
+      }
+
+      h3 {
+        @apply text-2xl leading-12;
+      }
+    }
+  }
+}
+
+/* ===========================
+   Overlay
+=========================== */
+.has-overlay {
+  &:after {
+    @apply content-[''] absolute top-0 left-0 w-full h-full bg-black/60 transition-opacity duration-300;
+  }
+
+  &.with-hover {
+    &:after {
+      opacity: 0;
+    }
+    &:hover:after {
+      opacity: 1;
+    }
+  }
+
+  &:hover:after {
+    @apply bg-black/70;
+  }
+}
+
+/* ===========================
+   Full Banner Block
+=========================== */
+.full-banner-entry {
+  @apply row-span-2 h-80 md:h-96 lg:h-[29rem] xl:h-[33rem] bg-stone-200 transition-opacity hover:opacity-95 bg-center bg-cover text-white text-center p-5 overflow-hidden relative bg-fixed;
+
+  background-attachment: initial;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: var(--color-primary);
+    transition: all 0.3s ease-in-out;
+    transform: rotate(220deg) translateY(-50%) translateX(33%);
+    opacity: 0.25;
+  }
+
+  &::before {
+    background: #fff;
+    right: auto;
+
+    [dir="ltr"] & {
+      left: -52%;
+    }
+
+    transform: rotate(220deg) translateY(-40%) translateX(0);
+  }
+
+  @media (max-width: 1330px) {
+    &::after {
+      top: -50%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &::before {
+      top: 20%;
+    }
+
+    &::after {
+      top: -80%;
+    }
+  }
+}
+
+/* ===========================
+   Tabs
+=========================== */
+.tabs-wrapper {
+  .tabs__item {
+    @apply hidden transition-all duration-300;
+
+    &.is-active {
+      @apply block;
+    }
+  }
+}
+
+/* Tabs Products */
+.s-block--tabs-produtcs,
+.s-block--special-products {
+  .tab-trigger.is-active button {
+    @apply text-primary-reverse bg-primary-dark border-primary-dark;
+  }
+}
+
+/* Feature Products */
+.s-block--features {
+  &__item {
+    @apply cursor-pointer bg-white transition-shadow duration-500 hover:shadow-default rounded-md flex-grow flex flex-col items-center px-4 py-8 md:px-8 text-center;
+
+    .feature-icon {
+      @apply mb-3 bg-primary w-16 h-16 rounded-full flex items-center justify-center overflow-hidden;
+
+      i {
+        @apply text-primary-reverse text-3xl;
+      }
+    }
+
+    h2 {
+      @apply font-bold text-sm text-gray-800 mb-1;
+    }
+
+    p {
+      @apply text-sm text-gray-500;
+    }
+
+    &:hover {
+      .feature-icon i {
+        animation: toRightFromLeft 0.3s forwards;
+      }
+    }
+  }
+}

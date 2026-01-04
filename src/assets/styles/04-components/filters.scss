@@ -1,0 +1,40 @@
+/* Filters wrapper */
+.salla-filters {
+  @apply bg-white p-4 rounded-md shadow-default;
+
+  &__section {
+    @apply mb-4;
+
+    h4 {
+      @apply font-bold mb-2 text-gray-700;
+    }
+
+    .filter-item {
+      @apply flex items-center gap-2 mb-2;
+
+      input[type="checkbox"],
+      input[type="radio"] {
+        @apply accent-primary;
+      }
+
+      label {
+        @apply cursor-pointer text-gray-600;
+      }
+    }
+  }
+
+  &__actions {
+    @apply flex justify-between mt-4;
+
+    button {
+      @apply px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark transition;
+    }
+  }
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 1024px) {
+  .salla-filters {
+    @apply fixed bottom-0 left-0 w-full p-4 z-50 shadow-lg;
+  }
+}

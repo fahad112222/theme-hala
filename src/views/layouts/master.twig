@@ -1,0 +1,127 @@
+{# #################### Shared Variables ####################### #}
+{# 
+| Variable                                           | Type     | Description
+|----------------------------------------------------|----------|-----------------------------------
+| store, theme, user, etc.                           |          | Refer to Salla documentation
+#}
+
+<!DOCTYPE html>
+<html lang="{{ user.language.code }}" dir="{{ user.language.dir }}">
+<!-- بسم الله الرحمن الرحيم -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# Default placeholder #}
+    {{ theme.settings.set('placeholder', 'images/placeholder.png') }}
+
+    {# Loading screen assets #}
+    {% include 'pages.partials.loading-screen-assets' %}
+
+    {# Core JS files #}
+    <script defer data-cfasync="false" src="{{ 'product-card.js'|asset }}"></script>
+    <script defer src="{{ 'main-menu.js'|asset }}"></script>
+
+    {% block head_scripts %}{% endblock %}
+
+    <script data-cfasync="false">
+        window.header_is_sticky = "{{theme.settings.get('header_is_sticky', 'Default Value')}}";
+        window.imageZoom = "{{theme.settings.get('imageZoom')}}";
+        window.can_access_wallet = "{{ user.can_access_wallet | json_encode }}";
+    </script>
+
+    {% hook 'head:start' %}
+    {% hook head %}
+
+    {# Global Stylesheets #}
+    <link rel="stylesheet" href="{{ 'app.css' | asset }}">
+    <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
+    <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
+
+    {# Dynamic Theme Variables for Beauty Palette #}
+    <style>
+        :root {
+            --font-main: '{{theme.font.name}}';
+            --color-primary: {{ theme.settings.get('primary_color', '#F6BDC0') }};
+            --color-primary-dark: {{ theme.color.darker(0.15, theme.settings.get('primary_color')) }};
+            --color-primary-light: {{ theme.color.lighter(0.15, theme.settings.get('primary_color')) }};
+            --color-secondary: {{ theme.settings.get('secondary_color', '#FFE6E8') }};
+            --color-text: {{ theme.settings.get('text_color', '#333333') }};
+            --color-bg: {{ theme.settings.get('background_color', '#FFFFFF') }};
+        }
+
+        body, input, button, select, textarea {
+            font-family: var(--font-main), sans-serif;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+        }
+
+        a {
+            color: var(--color-primary);
+        }
+
+        button, .btn {
+            background-color: var(--color-primary);
+            color: var(--color-secondary);
+        }
+
+        button:hover, .btn:hover {
+            background-color: var(--color-primary-dark);
+        }
+
+        header, footer {
+            background-color: var(--color-primary-light);
+        }
+    </style>
+
+    {% block styles %}{% endblock %}
+    {% hook 'head:end' %}
+</head>
+
+<body id="app" class="overflow-x-hidden
+  {% hook 'body:classes' %}
+  {{ theme.settings.get('footer_is_dark') ? ' footer-is-dark' : ' footer-is-light' }}
+  {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
+  {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
+">
+    <div class="loader-init"></div>
+
+    <noscript>
+        To get full functionality of this site you need to enable JavaScript. 
+        <a href="https://www.enable-javascript.com/" rel="noreferrer" target="_blank">
+            Learn how to enable JavaScript
+        </a>.
+    </noscript>
+
+    <div class="app-inner flex flex-col min-h-full">
+        {% hook 'body:start' %}
+
+        {# Header Component #}
+        {% component 'header.header' %}
+
+        {# Main Content Area #}
+        <main id="main-content" role="main">
+            {% block content %}{% endblock %}
+        </main>
+
+        {# Footer Component #}
+        {% component 'footer.footer' %}
+    </div>
+
+    {% hook 'body:end' %}
+
+    {# Core JS #}
+    <script defer src="{{ 'app.js' | asset }}"></script>
+
+    {# Salla Components #}
+    <salla-offer-modal></salla-offer-modal>
+    <salla-search></salla-search>
+
+    {% if user.type == 'guest' %}
+        <salla-login-modal></salla-login-modal>
+    {% endif %}
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

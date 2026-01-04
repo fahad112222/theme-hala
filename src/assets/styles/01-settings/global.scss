@@ -1,0 +1,87 @@
+// ===============================
+// Global Theme Settings
+// ===============================
+
+// SCSS helpers (use CSS vars internally)
+$color-primary: var(--color-primary);
+$color-primary-dark: var(--color-primary-d);
+$color-primary-light: var(--color-primary-l);
+$text-color-main: var(--main-text-color);
+$text-color-muted: var(--color-text);
+$bg-soft: var(--bg-gray);
+
+// ===============================
+// Root Variables (Admin-friendly)
+// ===============================
+:root {
+  /* ========= Brand Colors ========= */
+  --color-primary: #5cd5c4;        /* default primary */
+  --color-primary-d: #3bb3a3;      /* darker */
+  --color-primary-l: #8be5d8;      /* lighter */
+  --color-primary-reverse: #ff6767;
+
+  /* ========= Text ========= */
+  --main-text-color: #231f1e;
+  --main-text-color-dark: #2b2d34;
+  --color-text: #7c8082;
+
+  /* ========= UI ========= */
+  --bg-gray: #f6f7f8;
+  --color-grey: #f5f7f9;
+  --color-light-grey: #eeeeee;
+  --infinte-color: #c9c9c9;
+
+  /* ========= Typography ========= */
+  --font-main: "DINNextLTArabic", system-ui, sans-serif;
+  --font-sm: 0.875rem;
+
+  /* ========= Plugins ========= */
+  --mm-ocd-width: calc(100% - 51px);
+}
+
+// ===============================
+// Global Base Styles
+// ===============================
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--main-text-color);
+  background-color: #fff;
+  line-height: 1.7;
+}
+
+// ===============================
+// Typography
+// ===============================
+h1, h2, h3, h4, h5, h6 {
+  color: var(--main-text-color-dark);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+p {
+  color: var(--color-text);
+}
+
+// ===============================
+// Links
+// ===============================
+a {
+  color: var(--color-primary);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-d);
+}
+
+// ===============================
+// Buttons (base feel)
+// ===============================
+button,
+.btn {
+  transition: all 0.25s ease;
+}

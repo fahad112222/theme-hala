@@ -1,0 +1,290 @@
+/* ================================
+   Top Nav
+================================ */
+.top-navbar {
+  @apply flex py-2 min-h-[48px];
+
+  @screen lg {
+    @apply py-1.5;
+  }
+
+  /* Admin background color */
+  .topnav-has-bg & {
+    background-color: var(--topnav-bg);
+  }
+
+  /* Admin gradient */
+  .topnav-has-gradient & {
+    background-image: linear-gradient(
+      to right,
+      var(--topnav-gradient-from),
+      var(--topnav-gradient-to)
+    );
+  }
+
+  /* Admin text color */
+  .topnav-has-text-color & {
+    color: var(--topnav-text-color);
+  }
+
+  .s-search-input {
+    background-color: var(--bg-gray);
+    border: none;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .s-search-results {
+      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5;
+    }
+  }
+
+  /* Dark Topnav */
+  .topnav-is-dark & {
+    background-color: #111;
+    color: #d1d5db;
+
+    .btn--circle-gray,
+    .btn--rounded-gray,
+    .s-search-input {
+      background-color: rgba(255, 255, 255, 0.08);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+    }
+
+    .topnav-link-item {
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .s-search-input {
+      color: #fff;
+    }
+  }
+
+  .search-btn {
+    @apply grow sm:grow-0 justify-start md:justify-center;
+  }
+}
+
+/* ================================
+   Topnav Menu Items
+================================ */
+.topnav-link-item {
+  @apply inline-block transition duration-300 px-4 py-px text-sm leading-none
+         ltr:border-r rtl:border-l ltr:last:border-0 rtl:last:border-0
+         rtl:last:pl-0 ltr:last:pr-0;
+
+  border-color: var(--color-light-grey);
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &.right-side {
+    @apply rtl:first:pr-0 ltr:first:pl-0;
+  }
+}
+
+/* ================================
+   Main Nav
+================================ */
+.main-nav-container {
+  @apply min-h-[68px] lg:min-h-[84px];
+
+  /* Admin background */
+  .has-bg &,
+  .has-bg & .sub-menu {
+    background-color: var(--mainnav-bg);
+  }
+
+  /* Admin text color */
+  .has-text-color & {
+    color: var(--mainnav-text-color);
+  }
+}
+
+.menu-item {
+  @apply flex items-center px-6 py-2.5 sm:text-sm transition-colors duration-300;
+
+  color: var(--color-text);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  &.logout {
+    color: #ef4444;
+  }
+
+  &.is-active {
+    color: var(--color-primary);
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* ================================
+   Sticky Header
+================================ */
+.main-nav-container {
+  &.animated {
+    .inner {
+      transition:
+        top 0.5s,
+        transform 0.5s,
+        opacity 0.4s;
+    }
+  }
+
+  &.fixed-pinned {
+    .inner {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      z-index: 29;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      transform: translate3d(0, -100%, 0);
+
+      @media (max-width: 1024px) {
+        transform: none;
+        top: -70px;
+      }
+    }
+
+    .navbar-brand {
+      img {
+        max-height: 40px;
+      }
+
+      h4 {
+        line-height: 1;
+      }
+    }
+
+    .main-menu > li > a {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  &.fixed-header {
+    .inner {
+      transform: translate3d(0, 0, 0);
+
+      @media (max-width: 1024px) {
+        transform: none;
+        top: 0;
+      }
+    }
+  }
+}
+
+/* ================================
+   Brand
+================================ */
+.navbar-brand {
+  @apply flex items-center my-2 lg:my-0;
+
+  img {
+    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
+  }
+}
+
+/* ================================
+   Header Buttons
+================================ */
+.header-btn {
+  border: none;
+  outline: none;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    border: 1px solid var(--color-light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-text-color);
+    font-size: 1.25rem;
+
+    &.icon {
+      margin-right: 9px;
+
+      [dir="rtl"] & {
+        margin-right: unset;
+        margin-left: 9px;
+      }
+    }
+  }
+}
+
+salla-user-menu {
+  @apply shrink-0;
+}
+
+/* ================================
+   Cart Summary
+================================ */
+.s-cart-summary-total {
+  color: var(--main-text-color-dark);
+  font-weight: 600;
+}
+
+.s-cart-summary-count {
+  background-color: #7f1d1d;
+}
+
+/* ================================
+   Nav Cart
+================================ */
+#nav-cart {
+  @apply flex items-center relative whitespace-nowrap;
+
+  margin-left: 1rem;
+
+  [dir="rtl"] & {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+
+  .icon {
+    margin-right: 0.5rem;
+
+    [dir="rtl"] & {
+      margin-right: 0;
+      margin-left: 0.5rem;
+    }
+  }
+
+  span {
+    @apply absolute top-1;
+    left: -0.5rem;
+
+    [dir="rtl"] & {
+      left: unset;
+      right: -0.5rem;
+    }
+  }
+}
+
+/* ================================
+   Search
+================================ */
+.header-search {
+  .s-search-results {
+    z-index: 10;
+  }
+}

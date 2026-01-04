@@ -1,0 +1,131 @@
+{#
+| Variable         | Type    | Description
+|------------------|---------|-------------------------------
+| cart             | object  |
+| cart.items_count | int     |
+| cart.total       | string  |
+#}
+
+{% set important_links = theme.settings.get('important_links') %}
+
+<header class="store-header theme-beauty-header">
+
+  {# ===================== Top Bar ===================== #}
+  <div class="top-navbar bg-[var(--color-primary-light)] border-b border-black/5">
+    <div class="container flex justify-between items-center py-2">
+
+      <div class="flex-1 flex items-center gap-3">
+
+        {# Important links (footer menu reused) #}
+        {% if important_links %}
+          <div class="hidden lg:block text-sm text-[var(--color-text)]/80">
+            <salla-menu source="footer" topnav></salla-menu>
+          </div>
+        {% endif %}
+
+        {# Language & Currency #}
+        {% if store.settings.is_multilingual or store.settings.currencies_enabled %}
+          <button
+            type="button"
+            onclick="salla.event.dispatch('localization::open')"
+            class="btn--rounded-gray flex items-center gap-2 px-3 h-9 text-sm"
+          >
+            <span class="flag iti__flag iti__{{ user.language.country_code }} rounded-sm"></span>
+            <span class="opacity-50">|</span>
+            <span>{{ currency.symbol }}</span>
+          </button>
+          <salla-localization-modal></salla-localization-modal>
+        {% endif %}
+
+        {# Branch / Scope #}
+        {% if store.scope %}
+          <button
+            class="btn--rounded-gray flex items-center gap-1 h-9 px-3 text-sm"
+            onclick="salla.event.dispatch('scopes::open', {'mode': 'default'})"
+          >
+            <i class="sicon-location"></i>
+            <span>{{ store.scope.name }}</span>
+          </button>
+        {% endif %}
+
+        {# Search (soft rounded style) #}
+        <div class="header-search flex-1 max-w-md hidden md:block">
+          <salla-search inline oval height="38"></salla-search>
+        </div>
+      </div>
+
+      <salla-contacts is-header></salla-contacts>
+    </div>
+  </div>
+
+  {# ===================== Main Navigation ===================== #}
+  <div
+    id="mainnav"
+    class="main-nav-container bg-white/95 backdrop-blur border-b border-black/5"
+  >
+    <div class="container">
+      <div class="flex items-center justify-between min-h-[72px]">
+
+        {# Left: Burger + Logo + Menu #}
+        <div class="flex items-center gap-4">
+
+          <a
+            class="lg:hidden mburger mburger--collapse"
+            href="#mobile-menu"
+            aria-label="Open menu"
+          >
+            <i class="sicon-menu text-[var(--color-primary)] text-2xl"></i>
+          </a>
+
+          <a class="navbar-brand flex items-center" href="{{ store.url }}">
+            <img
+              src="{{ store.logo }}"
+              alt="{{ store.name }} logo"
+              class="max-h-10 object-contain"
+              fetchpriority="high"
+              loading="eager"
+            >
+            {% if is_page('index') %}
+              <h1 class="sr-only">{{ store.name }}</h1>
+            {% else %}
+              <h2 class="sr-only">{{ store.name }}</h2>
+            {% endif %}
+          </a>
+
+          <custom-main-menu></custom-main-menu>
+        </div>
+
+        {# Right: User & Cart #}
+        <div class="flex items-center gap-3">
+
+          {% if user.type == 'user' %}
+            <salla-user-menu avatar-only show-header></salla-user-menu>
+          {% else %}
+            <button
+              class="header-btn rounded-full hover:bg-[var(--color-primary-light)] transition"
+              aria-label="User account"
+              onclick="salla.event.dispatch('login::open')"
+            >
+              <i class="header-btn__icon sicon-user-circle"></i>
+            </button>
+          {% endif %}
+
+          <salla-cart-summary>
+            <i
+              slot="icon"
+              class="header-btn__icon sicon-shopping-bag text-[var(--color-primary)]"
+            ></i>
+          </salla-cart-summary>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+{# ===================== Scopes Modal ===================== #}
+{% if store.scope %}
+  <salla-scopes
+    selection="{{ store.scope.display_as == 'popup' ? 'mandatory' : 'optional' }}"
+  ></salla-scopes>
+{% endif %}

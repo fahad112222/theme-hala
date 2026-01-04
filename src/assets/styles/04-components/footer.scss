@@ -1,0 +1,90 @@
+/* ================================
+   Store Footer
+================================ */
+.store-footer {
+  position: relative;
+  margin-top: 4rem;
+  background-color: var(--footer-bg, #111);
+  color: var(--footer-text, #ffffff);
+
+  a {
+    transition: opacity 0.25s ease;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  &__inner {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    background-color: var(--footer-inner-bg, #181818);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+
+    @media (min-width: 1024px) {
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  /* Social Icons */
+  .social-link {
+    width: 32px;
+    height: 32px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  /* Mobile Social Section */
+  .contact-social {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    ul {
+      margin-bottom: 0;
+    }
+  }
+
+  /* ================================
+     Light Footer Variant
+  ================================ */
+  .footer-is-light & {
+    background-color: var(--footer-bg-light, #f9fafb);
+    color: var(--footer-text-light, #374151);
+
+    .store-footer__inner {
+      background-color: var(--footer-inner-bg-light, #f3f4f6);
+      border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .social-link {
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-social {
+      border-top-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+/* ================================
+   Copyright
+================================ */
+.copyright-text p {
+  color: var(--footer-muted-text, #6b7280);
+}

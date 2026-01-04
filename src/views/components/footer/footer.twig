@@ -1,0 +1,109 @@
+<footer class="store-footer theme-beauty-footer bg-[var(--color-primary-light)] border-t border-black/5">
+
+  {# ===================== Main Footer ===================== #}
+  <div aria-label="footer" class="store-footer__inner py-12">
+    <div class="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+
+      {# ===== Store Info ===== #}
+      <div class="lg:col-span-2">
+        <a href="{{ link('/') }}" class="flex items-center mb-3">
+          <h3 class="text-lg font-semibold text-[var(--color-text)]">
+            {{ store.name }}
+          </h3>
+        </a>
+
+        {% if store.description %}
+          <div class="max-w-sm text-sm leading-6 text-[var(--color-text)]/80 mb-6">
+            {{ store.description|raw }}
+          </div>
+        {% endif %}
+
+        <div class="hidden lg:block">
+          <salla-social class="block"></salla-social>
+        </div>
+
+        {# VAT Information #}
+        {% if store.settings.tax.number %}
+          <div class="flex gap-3 items-end mt-6">
+            {% if store.settings.tax.certificate %}
+              <a
+                class="load-img-onclick"
+                data-modal-id="modal-value-tax"
+                href="#/"
+                aria-label="{{ store.settings.tax.number }}"
+              >
+                <img
+                  width="40"
+                  height="50"
+                  src="{{ 'images/s-empty.png' | cdn }}"
+                  data-src="{{ 'images/tax.png' | cdn(70,70) }}"
+                  class="lazy w-10 rounded-md hover:opacity-80 transition"
+                  alt="VAT Certificate"
+                >
+              </a>
+            {% endif %}
+            <div>
+              <p class="text-xs text-[var(--color-text)]/60 mb-1">
+                {{ trans('common.elements.tax_number') }}
+              </p>
+              <b class="text-sm text-[var(--color-text)]">
+                {{ store.settings.tax.number }}
+              </b>
+            </div>
+          </div>
+
+          {% if store.settings.tax.certificate %}
+            <salla-modal
+              sub-title-first
+              sub-title="{{ trans('common.elements.tax_number') }}"
+              modal-title="{{ store.settings.tax.number }}"
+              id="modal-value-tax"
+            >
+              <div class="flex justify-center">
+                <img
+                  class="w-full rounded-lg"
+                  loading="lazy"
+                  src="{{ 'images/s-empty.png' | cdn }}"
+                  data-src="{{ store.settings.tax.certificate }}"
+                  alt="{{ store.settings.tax.number }}"
+                />
+              </div>
+            </salla-modal>
+          {% endif %}
+        {% endif %}
+      </div>
+
+      {# ===== Pages Links ===== #}
+      <div>
+        <h3 class="text-sm font-semibold mb-4 text-[var(--color-text)]">
+          {{ trans('blocks.footer.pages_links') }}
+        </h3>
+        <salla-menu source="footer"></salla-menu>
+      </div>
+
+      {# ===== Contact ===== #}
+      <div>
+        <salla-contacts></salla-contacts>
+
+        <div class="lg:hidden mt-4">
+          <salla-social></salla-social>
+        </div>
+      </div>
+
+      {# ===== Apps Icons ===== #}
+      <salla-apps-icons class="lg:col-span-2"></salla-apps-icons>
+
+    </div>
+  </div>
+
+  {# ===================== Bottom Bar ===================== #}
+  <div class="border-t border-black/5 py-4">
+    <div class="container flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+      <span class="text-xs text-[var(--color-text)]/60">
+        {% hook copyright %}
+      </span>
+      <salla-payments></salla-payments>
+    </div>
+  </div>
+
+</footer>
