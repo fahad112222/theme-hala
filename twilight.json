@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "ababel-abajora-theme",
-        "en": "Novie"
+        "ar": "ثيم الجمال والعناية الاحترافي",
+        "en": "Beauty & Care Professional Theme"
     },
     "repository": "https://github.com/fahad112222/theme-hala",
-    "author_email": "hamedajaj18@gmail.com",
+    "author_email": "contact.halaabousaad@gmail.com",
     "features": [
         "mega-menu",
         "fonts",
@@ -1025,7 +1025,7 @@
             ]
         }
     ],
-    "support_url": "https://ababeel-world.com/ar",
+    "support_url": "https://novie.com/ar",
     "description": {
         "ar": "",
         "en": ""

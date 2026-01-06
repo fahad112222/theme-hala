@@ -15,21 +15,21 @@ $bg-soft: var(--bg-gray);
 // ===============================
 :root {
   /* ========= Brand Colors ========= */
-  --color-primary: #5cd5c4;        /* default primary */
-  --color-primary-d: #3bb3a3;      /* darker */
-  --color-primary-l: #8be5d8;      /* lighter */
-  --color-primary-reverse: #ff6767;
+  --color-primary: #D4A373;        /* default primary */
+  --color-primary-d: #A98467;      /* darker */
+  --color-primary-l: #FAEDCD;      /* lighter */
+  --color-primary-reverse: #FFFFFF;
 
   /* ========= Text ========= */
-  --main-text-color: #231f1e;
-  --main-text-color-dark: #2b2d34;
-  --color-text: #7c8082;
+  --main-text-color: #283618;
+  --main-text-color-dark: #1B2610;
+  --color-text: #606C38;
 
   /* ========= UI ========= */
-  --bg-gray: #f6f7f8;
-  --color-grey: #f5f7f9;
-  --color-light-grey: #eeeeee;
-  --infinte-color: #c9c9c9;
+  --bg-gray: #FEFAE0;
+  --color-grey: #F2E9E4;
+  --color-light-grey: #E9EDC9;
+  --infinte-color: #CCD5AE;
 
   /* ========= Typography ========= */
   --font-main: "DINNextLTArabic", system-ui, sans-serif;
